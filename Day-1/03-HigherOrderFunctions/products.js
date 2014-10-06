@@ -95,5 +95,50 @@
     any
 
     */
+    
+    var min = function(list,selectorFn){
+        var result = selectorFn(list[0]);
+        for(var i=1;i<list.length;i++){
+            var value = selectorFn(list[i]);
+            if (value < result) result = value;
+        }
+        return result;
+    }
+    var costSelectorFn = function(product){ return product.cost; }
+    var minCost = min(products,costSelectorFn);
+    console.log("Min cost = ", minCost);
+    
+    var min = function(list,selector){
+        var selectorFn = (typeof selector === "function") ? selector : function(product){ return product[selector]; }; 
+        var result = selectorFn(list[0]);
+        for(var i=1;i<list.length;i++){
+            var value = selectorFn(list[i]);
+            if (value < result) result = value;
+        }
+        return result;
+    }
+    
+    var minUnits = min(products,"units");
+    console.log("Min units = ", minUnits);
+    
+    var all = function(list,criteriaFn){
+        for(var i=0;i<list.length;i++)
+            if (!criteriaFn(list[i])) return false;
+        return true;
+    }
+    
+    var any = function(list,criteriaFn){
+        for(var i=0;i<list.length;i++)
+            if (criteriaFn(list[i])) return true;
+        return false;
+    }
+    var map = function(list,transform){
+        var result = [];
+        for(var i=0;i<list.length;i++)
+            result.push(transform(list[i]));
+        return result;
+    }
+    
+    
 
 }());
