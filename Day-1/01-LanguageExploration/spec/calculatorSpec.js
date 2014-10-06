@@ -92,6 +92,17 @@ describe("A calculator", function(){
         //Assert
         expect(result).toBe(expectedResult);
     });
+    it("should be able to add varying number of arguments",function(){
+        //Arrange
+        var expectedResult = 150;
+        
+        //Act
+        var result = add(10,20,30,40,50);
+        
+        //Assert
+        expect(result).toBe(expectedResult);
+        
+    });
     it("should be able to add an array of numbers", function(){
         //Arrange
         var numbers1 = [10,20],
