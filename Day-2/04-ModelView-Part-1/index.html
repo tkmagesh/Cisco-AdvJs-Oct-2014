@@ -17,7 +17,21 @@
     <script src="SalaryCalculator.js"></script>
     <script>
     (function(){
-        //fill in the blanks
+        $(function(){
+            var calculator = new SalaryCalculator();
+            $("#btnCalculate").click(function(){
+                calculator.basic = parseInt($("#txtBasic").val(),10);
+                calculator.hra = parseInt($("#txtHra").val(),10);
+                calculator.da = parseInt($("#txtDa").val(),10);
+                calculator.tax = parseInt($("#rangeTax").val(),10);
+                calculator.calculate();
+                $("#divResult").html(calculator.salary);
+            });
+            $("#rangeTax").change(function(){
+                $("#spanTax").text(this.value + "%");
+            });
+        });
+
     })();
     </script>
 </head>
