@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Calculator</title>
+    <style>
+        label {
+            display : block;
+        }
+        #divResult{
+            font-size: 28pt;
+            color : red;
+            font-weight: bold;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script src="SalaryCalculator.js"></script>
+    <script>
+    (function(){
+        //fill in the blanks
+    })();
+    </script>
+</head>
+<body>
+    <h1>Salary Calculator</h1>
+    <div class="content">
+        <div><label for="txtBasic">Basic :</label><input type="text" name="" id="txtBasic"></div>
+        <div><label for="txtHra">Hra :</label><input type="text" name="" id="txtHra"></div>
+        <div><label for="txtDa">Da :</label><input type="text" name="" id="txtDa"></div>
+        <div>
+            <label for="rangeTax">Tax :</label>
+            <input type="range" name="" id="rangeTax" min="0" max="50" value="0">
+            <span id="spanTax">[Tax%]</span>
+        </div>
+        <div><input type="button" value="Calculate" id="btnCalculate"></div>
+        <div>
+            <div id="divResult">[Salary]</div>
+        </div>
+    </div>
+</body>
+</html>

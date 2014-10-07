@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Greet</title>
+    <style>
+    label{
+        display : block;
+    }
+        .morning{
+            color : green;
+        }
+        .afternoon{
+            color : red;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script>
+        (function(){
+            var doGreet = function(){
+                var firstName = $("#txtFirstName").val(),
+                    lastName = $("#txtLastName").val(),
+                    hour = new Date().getHours(),
+                    msg = '';
+                if (hour < 12){
+                    msg = "Good Morning " + firstName + " " + lastName;
+                    $("#divMessage").html(msg);
+                    $("#divMessage").removeClass("afternoon");
+                    $("#divMessage").addClass("morning");
+                } else {
+                    msg = "Good Afternoon " + firstName + " " + lastName;
+                    $("#divMessage").html(msg);
+                    $("#divMessage").removeClass("morning");
+                    $("#divMessage").addClass("afternoon");
+                }
+            };
+
+            $(function (){
+                $("#btnGreet").click(doGreet);
+            });
+        })();
+    </script>
+</head>
+<body>
+    <div><label for="txtFirstName">First Name:</label><input type="text" name="" id="txtFirstName"></div>
+    <div><label for="txtLastName">Last Name:</label><input type="text" name="" id="txtLastName"></div>
+    <div><input type="button" value="Greet" id="btnGreet"></div>
+    <div>
+        <div id="divMessage">[Message]</div>
+    </div>
+</body>
+</html>
