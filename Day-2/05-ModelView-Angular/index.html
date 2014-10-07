@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Calculator</title>
+    <style>
+        label {
+            display : block;
+        }
+        #divResult{
+            font-size: 28pt;
+            color : red;
+            font-weight: bold;
+        }
+    </style>
+    <script src="jquery-1.11.1.js"></script>
+    <script src="angular.js"></script>
+    <script src="SalaryCalculator.js"></script>
+
+    <script>
+        function salaryCalculatorController($scope){
+            $scope.calculator = new SalaryCalculator();
+        }
+    </script>
+
+</head>
+<body ng-app>
+    <h1>Salary Calculator</h1>
+    <div class="content" ng-controller="salaryCalculatorController">
+        <div>
+            <label for="txtBasic">Basic :</label>
+            <input type="text" name="" id="txtBasic" ng-model="calculator.basic">
+        </div>
+        <div>
+            <label for="txtHra">Hra :</label>
+            <input type="text" name="" id="txtHra" ng-model="calculator.hra">
+        </div>
+        <div>
+            <label for="txtDa">Da :</label>
+            <input type="text" name="" id="txtDa" ng-model="calculator.da">
+        </div>
+        <div>
+            <label for="rangeTax">Tax :</label>
+            <input type="range" name="" id="rangeTax" min="0" max="50" ng-model="calculator.tax">
+            <span id="spanTax">{{calculator.tax}}%</span>
+        </div>
+        <div>
+            <input type="button" value="Calculate" id="btnCalculate" ng-click="calculator.calculate()">
+        </div>
+        <div>
+            <div id="divResult">{{calculator.salary | currency}}</div>
+        </div>
+    </div>
+</body>
+</html>
