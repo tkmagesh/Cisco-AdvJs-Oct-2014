@@ -18,18 +18,43 @@
     <script>
     (function(){
         $(function(){
-            var calculator = new SalaryCalculator();
-            $("#btnCalculate").click(function(){
-                calculator.basic = parseInt($("#txtBasic").val(),10);
-                calculator.hra = parseInt($("#txtHra").val(),10);
-                calculator.da = parseInt($("#txtDa").val(),10);
-                calculator.tax = parseInt($("#rangeTax").val(),10);
-                calculator.calculate();
-                $("#divResult").html(calculator.salary);
+            window.calculator = new SalaryCalculator();
+
+            /*Model change subscriptions*/
+            calculator.addSubscriber("salary",function(){
+                $("#divResult").html(this.get("salary"));
+            });
+            calculator.addSubscriber("basic",function(){
+                $("#txtBasic").val(this.get("basic"));
+            });
+            calculator.addSubscriber("hra",function(){
+                $("#txtHra").val(this.get("hra"));
+            });
+            calculator.addSubscriber("da",function(){
+                $("#txtDa").val(this.get("da"));
+            });
+            calculator.addSubscriber("tax",function(){
+                $("#rangeTax").val(this.get("tax"));
+                $("#spanTax").text(this.get("tax") + "%");
+            });
+
+            /*View change subscriptions*/
+            $("#txtBasic").change(function(){
+                calculator.set("basic", parseInt(this.value,10));
+            });
+            $("#txtHra").change(function(){
+                calculator.set("hra", parseInt(this.value,10));
+            });
+            $("#txtDa").change(function(){
+                calculator.set("da", parseInt(this.value,10));
             });
             $("#rangeTax").change(function(){
-                $("#spanTax").text(this.value + "%");
+                calculator.set("tax", parseInt(this.value,10));
             });
+            $("#btnCalculate").click(function(){
+                calculator.calculate();
+            });
+
         });
 
     })();
